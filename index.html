@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>spatial cues enhanced R-SE demo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 10px;
+        }
+        header {
+            text-align: center;
+            padding: 1px;
+            background-color: #f2f2f2;
+        }
+        .content {
+            border-top: 2px solid orange;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-top: 10px;
+            font-size: 14pt;
+        }
+        .dataset-name {
+            font-size: 16pt;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .paper_figure img {
+            width: 960px;
+            display: block;
+            margin: auto;
+        }
+        .result_table img {
+            width: 960px;
+            display: block;
+            margin: auto;
+        }
+        .result_table2 img {
+            width: 480px;
+            display: block;
+            margin: auto;
+        }
+        .demo img {
+            width: 960px;
+            display: block;
+            margin: auto;
+            padding: 10px 10px;
+        }
+        .simulated img {
+            width: 960px;
+            display: block;
+            margin: auto;
+        }
+        .spectrogram img {
+            height: 120px;
+            display: block;
+            margin: 0 auto;
+        }
+        .sample_imag img {
+            width: 300px;
+            display: block;
+            margin: 0 auto;
+        }
+        .audio-control {
+            text-align: center;
+        }
+        .metric {
+        font-size: 14px;
+        color: #333;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        font-family: sans-serif;
+    }
+    </style>
+</head>
+
+<body>
+    <center>
+        <header>
+            <h1>Spatial Cues Enhanced Multi-Channel Band-Split RNN for Regional Sound Extraction<br></h1>
+        </header>
+        <p>
+            <b>Xiang Zhou</b><sup>1</sup>, <b>Yichen Yang</b><sup>1,2</sup>, and <b>Wen Zhang</b><sup>1</sup><br>
+            <sup>1</sup>Center of Intelligent Acoustics and Immersive Communications, School of Artificial Intelligence,
+            Northwestern Polytechnical University, Xi'an, Shaanxi, China<br>
+            <sup>2</sup>Graduate School of Information, Production and Systems, Waseda University, Kitakyushu, Japan<br>
+        </p>
+    </center>
+    <left>
+        <tr>
+            <td>
+                <div class="paper_figure">
+                    <img src="src/fig/framework.png" alt="overview"><br>
+                </div>
+                <hr>
+                <b>Abstract:</b> Regional sound extraction, which aims to isolate all active sound sources within a specific spatial region defined by direction and distance, is a critical technology with numerous methods developed for the task. However, the performance of these methods often deteriorates when interference sources are located in close spatial proximity to the target region. To overcome this limitation, we propose a spatially informed multi-channel band-split recurrent neural network (BSRNN) system. The system incorporates two novel modules for fine-grained utilization of spatial cues: a target directions embedding generator to represent directional information and a distance and reverberation time embedding generator to capture distance-related features and room reverberation features. We perform extensive evaluations on both simulated and real-world datasets. The results show that the proposed method substantially outperforms baseline approaches in multiple metrics. Notably, it achieves high spatial resolution, sustaining strong separation performance even when sources are separated by very small angles and distances, demonstrating its effectiveness in challenging scenarios with closely spaced talkers.       <br>
+
+                <hr>
+                <details>
+                <br>
+                <summary><strong>The separation performance on the Spatialized WSJ0-2mix and RealMAN datasets</strong> (click to expand) </summary>
+                <div class="result_table">
+                    <img src = "src/fig/table1.png"> <br>
+                </div>
+                </details>
+                <br>
+                
+                <details>
+                <br>
+                <summary><strong>Evaluation of spatial resolution on the Spatialized WSJ0-2mix dataset</strong> (click to expand) </summary>
+                <div class="result_table">
+                    <img src = "src/fig/table2.png"> <br>
+                </div>
+                </details>
+                <br>
+            </td>
+        </tr>
+    </left>
+    <center>
+        <tr>
+            <td>
+                <section class="content">
+                    <div class="dataset-name">Audio samples (performance on two datasets)</div>
+                    <div class="demo">
+                    <table style="width: 600px; max-width: 100%; border: 1px solid black;">
+                        <tr>
+                            <th style="border: 1px solid black; width: 200px; padding: 5px 20px;">Sample</th>
+                            <th style="border: 1px solid black; width: 200px;">Mixture</th>
+                            <th style="border: 1px solid black; width: 200px;">Target</th>
+                            <th style="border: 1px solid black; width: 200px;">ReZero</th>
+                            <th style="border: 1px solid black; width: 200px;">DSS</th>
+                            <th style="border: 1px solid black; width: 200px;">Ours</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; border: 1px solid black;">1</td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample1/1_mix.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample1/1_mix.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample1/1_target.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample1/1_target.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample1/1_rezero.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample1/1_rezero.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 14.52dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample1/1_dss.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample1/1_dss.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 12.46dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample1/1_ours.png">  <audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample1/1_ours.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 16.82dB</p></div></td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: center; border: 1px solid black;">2</td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample2/2_mix.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample2/2_mix.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample2/2_target.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample2/2_target.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample2/2_rezero.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample2/2_rezero.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 17.30dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample2/2_dss.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample2/2_dss.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 14.32dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample2/2_ours.png">  <audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample2/2_ours.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 20.51dB</p></div></td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: center; border: 1px solid black;">3</td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample3/3_mix.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample3/3_mix.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample3/3_target.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample3/3_target.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample3/3_rezero.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample3/3_rezero.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 14.25dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample3/3_dss.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample3/3_dss.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 13.84dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample3/3_ours.png">  <audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample3/3_ours.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 17.08dB</p></div></td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: center; border: 1px solid black;">4</td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample4/4_mix.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample4/4_mix.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample4/4_target.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample4/4_target.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample4/4_rezero.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample4/4_rezero.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 17.10dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample4/4_dss.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample4/4_dss.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 14.19dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample4/4_ours.png">  <audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample4/4_ours.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 20.34dB</p></div></td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: center; border: 1px solid black;">5</td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample5/5_mix.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample5/5_mix.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample5/5_target.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample5/5_target.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample5/5_rezero.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample5/5_rezero.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 19.19dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample5/5_dss.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample5/5_dss.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 17.05dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_wsj0/sample5/5_ours.png">  <audio controls style="width: 100%;"><source src="src/audio/performance_on_wsj0/sample5/5_ours.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 22.03dB</p></div></td>
+                        </tr>
+                    </table>
+                    </div>
+                </section>
+
+                <section class="content">
+                    <div class="dataset-name"> Audio samples (azimuth resolution capabilities)</div>
+                    <div class="demo">
+                    <table style="width: 800px; max-width: 100%; border: 1px solid black;">
+                        <tr>
+                            <th style="border: 1px solid black; width: 200px; padding: 5px 20px;">Azimuth</th>
+                            <th style="border: 1px solid black; width: 200px;">Mixture</th>
+                            <th style="border: 1px solid black; width: 200px;">Target</th>
+                            <th style="border: 1px solid black; width: 200px;">ReZero</th>
+                            <th style="border: 1px solid black; width: 200px;">DSS</th>
+                            <th style="border: 1px solid black; width: 200px;">Ours</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; border: 1px solid black;">[5°,10°]</td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample1/1_mix.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample1/1_mix.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample1/1_target.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample1/1_target.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample1/1_rezero.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample1/1_rezero.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: -6.27dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample1/1_dss.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample1/1_dss.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: -12.18dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample1/1_ours.png">  <audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample1/1_ours.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 10.56dB</p></div></td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: center; border: 1px solid black;">[10°,15°]</td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample2/2_mix.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample2/2_mix.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample2/2_target.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample2/2_target.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample2/2_rezero.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample2/2_rezero.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 1.49dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample2/2_dss.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample2/2_dss.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: -10.69dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample2/2_ours.png">  <audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample2/2_ours.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 12.93dB</p></div></td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: center; border: 1px solid black;">[15°,20°]</td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample3/3_mix.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample3/3_mix.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample3/3_target.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample3/3_target.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample3/3_rezero.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample3/3_rezero.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 1.70dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample3/3_dss.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample3/3_dss.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: -25.11dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample3/3_ours.png">  <audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample3/3_ours.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 11.27dB</p></div></td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: center; border: 1px solid black;">[20°,25°]</td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample4/4_mix.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample4/4_mix.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample4/4_target.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample4/4_target.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample4/4_rezero.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample4/4_rezero.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 10.99dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample4/4_dss.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample4/4_dss.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 10.00dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample4/4_ours.png">  <audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample4/4_ours.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 14.07dB</p></div></td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: center; border: 1px solid black;">[25°,30°]</td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample5/5_mix.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample5/5_mix.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample5/5_target.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample5/5_target.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample5/5_rezero.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample5/5_rezero.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 11.31dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample5/5_dss.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample5/5_dss.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 10.94dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_azimuth/sample5/5_ours.png">  <audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample5/5_ours.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 14.10dB</p></div></td>
+                        </tr>
+                    </table>
+                    </div>
+                </section>
+
+                <section class="content">
+                    <div class="dataset-name"> Audio samples (distance resolution capabilities)</div>
+                    <div class="demo">
+                    <table style="width: 800px; max-width: 100%; border: 1px solid black;">
+                        <tr>
+                            <th style="border: 1px solid black; width: 200px; padding: 5px 20px">Distance</th>
+                            <th style="border: 1px solid black; width: 200px;">Mixture</th>
+                            <th style="border: 1px solid black; width: 200px;">Target</th>
+                            <th style="border: 1px solid black; width: 200px;">ReZero</th>
+                            <th style="border: 1px solid black; width: 200px;">DSS</th>
+                            <th style="border: 1px solid black; width: 200px;">Ours</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; border: 1px solid black;">[0m,0.2m]</td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample1/1_mix.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample1/1_mix.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample1/1_target.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample1/1_target.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample1/1_rezero.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample1/1_rezero.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: -0.74dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample1/1_dss.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample1/1_dss.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 2.27dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample1/1_ours.png">  <audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample1/1_ours.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 9.48dB</p></div></td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: center; border: 1px solid black;">[0.2m,0.4m]</td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample2/2_mix.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample2/2_mix.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample2/2_target.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample2/2_target.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample2/2_rezero.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample2/2_rezero.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: -0.84dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample2/2_dss.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample2/2_dss.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 4.35dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample2/2_ours.png">  <audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample2/2_ours.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 9.75dB</p></div></td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: center; border: 1px solid black;">[0.4m,0.6m]</td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample3/3_mix.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample3/3_mix.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample3/3_target.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample3/3_target.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample3/3_rezero.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample3/3_rezero.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: -11.30dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample3/3_dss.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample3/3_dss.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: -30.24dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample3/3_ours.png">  <audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample3/3_ours.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 6.16dB</p></div></td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: center; border: 1px solid black;">[0.6m,0.8m]</td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample4/4_mix.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample4/4_mix.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample4/4_target.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample4/4_target.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample4/4_rezero.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample4/4_rezero.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: -11.54dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample4/4_dss.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample4/4_dss.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: -19.13dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample4/4_ours.png">  <audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample4/4_ours.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 4.31dB</p></div></td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: center; border: 1px solid black;">[0.8m,1.0m]</td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample5/5_mix.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample5/5_mix.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample5/5_target.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample5/5_target.wav" type="audio/wav"></audio>
+                            <p class="metric">——</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample5/5_rezero.png"><audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample5/5_rezero.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: -3.72dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample5/5_dss.png">   <audio controls style="width: 100%;"><source src="src/audio/performance_on_distance/sample5/5_dss.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: -22.18dB</p></div></td>
+                            <td style="text-align: center; border: 1px solid black;"><div class="sample_imag"><img src="src/fig/performance_on_distance/sample5/5_ours.png">  <audio controls style="width: 100%;"><source src="src/audio/performance_on_azimuth/sample5/5_ours.wav" type="audio/wav"></audio>
+                            <p class="metric">SI-SDR: 7.30dB</p></div></td>
+                        </tr>
+                    </table>
+                    </div>
+                </section>
+            </td>
+        </tr>
+    </center>
+</body>
+
+</html>
