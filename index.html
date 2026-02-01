@@ -85,10 +85,9 @@
             <h1>Spatial Cues Enhanced Multi-Channel Band-Split RNN for Regional Sound Extraction<br></h1>
         </header>
         <p>
-            <b>Xiang Zhou</b><sup>1</sup>, <b>Yichen Yang</b><sup>1,2</sup>, and <b>Wen Zhang</b><sup>1</sup><br>
+            <b>Shengjie Lu</b><sup>1</sup>, <b>Xiang Zhou</b><sup>1</sup>, <b>Yichen Yang</b><sup>1</sup>, and <b>Yichen Yang</b><sup>1</sup>Wen Zhang<br>
             <sup>1</sup>Center of Intelligent Acoustics and Immersive Communications, School of Artificial Intelligence,
             Northwestern Polytechnical University, Xi'an, Shaanxi, China<br>
-            <sup>2</sup>Graduate School of Information, Production and Systems, Waseda University, Kitakyushu, Japan<br>
         </p>
     </center>
     <left>
@@ -98,7 +97,7 @@
                     <img src="src/fig/framework.png" alt="overview"><br>
                 </div>
                 <hr>
-                <b>Abstract:</b> Regional sound extraction, which aims to isolate all active sound sources within a specific spatial region defined by direction and distance, is a critical technology with numerous methods developed for the task. However, the performance of these methods often deteriorates when interference sources are located in close spatial proximity to the target region. To overcome this limitation, we propose a spatially informed multi-channel band-split recurrent neural network (BSRNN) system. The system incorporates two novel modules for fine-grained utilization of spatial cues: a target directions embedding generator to represent directional information and a distance and reverberation time embedding generator to capture distance-related features and room reverberation features. We perform extensive evaluations on both simulated and real-world datasets. The results show that the proposed method substantially outperforms baseline approaches in multiple metrics. Notably, it achieves high spatial resolution, sustaining strong separation performance even when sources are separated by very small angles and distances, demonstrating its effectiveness in challenging scenarios with closely spaced talkers.       <br>
+                <b>Abstract:</b> Target speaker extraction (TSE) aims to isolate a desired talker from mixtures, but performance often collapses when an interferer is close to the target direction and when reverberation blurs spatial cues. We propose a spatially informed TSE framework built on the SpatialNet separation backbone and explicitly conditioned on direction, distance, and room acoustics. To improve angular discriminability, we introduce a high-resolution DOA embedding module that performs direction-aware convolution over a target angular region. To resolve spatial ambiguity when DOA cues are insufficient, we encode the target distance with a Gaussian-kernel soft representation rather than injecting a raw scalar. In addition, we provide explicit reverberation guidance using global room acoustic metrics and fuse these cues through Feature-wise Linear Modulation within the backbone. Experiments on Spatialized WSJ0-2mix show consistent gains over recent DOA- and distance-conditioned baselines, and yield large improvements in extreme cases where target and interferer are nearly co-located in azimuth.        <br>
 
                 <hr>
                 <details>
